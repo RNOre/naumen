@@ -139,18 +139,15 @@ export class UserService {
     this.users.set(initialData);
   }
 
-  public getFilteredUserList(search: string = '', status: string | null = null) {
+  public getFilteredUserList(search: string = '', status: string) {
     return computed(() => {
       return this.users().filter(user => {
-        // Фильтрация по имени (если search не пустой)
         const nameMatches = !search ||
           user.name.toLowerCase().includes(search.toLowerCase());
 
-        // Фильтрация по статусу (если status не null)
-        const statusMatches = status === null ||
-          user.active === (status == 'true');
+        const statusMatches = status === 'all' ||
+          user.active === (status == 'active');
 
-        // Оба условия должны выполняться
         return nameMatches && statusMatches;
       });
     });

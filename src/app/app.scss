@@ -1,18 +1,21 @@
-.main{
+.main {
   display: flex;
   gap: 40px;
   padding: 20px 50px;
 }
+
 .container {
   max-width: 1000px;
   width: 100%;
 }
+
 .userList {
   display: flex;
   gap: 20px;
   margin-top: 100px;
   flex-wrap: wrap;
 }
+
 .searchBlock {
   display: flex;
 
@@ -25,33 +28,61 @@
     font-weight: 400;
     padding-left: 60px;
     width: 80%;
+
     &__wrapper {
       position: relative;
       flex: 4;
     }
+
     &__loop {
       position: absolute;
       top: 20px;
       left: 25px;
     }
   }
+
   &-select {
     flex: 1;
+    min-height: 55px;
     border-radius: 20px;
     border: 2px #0000001C solid;
-    padding-left: 25px;
-    height: 61px;
     font-size: 20px;
     color: #b2b2b2;
     font-weight: 400;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2218%22%20height%3D%2210%22%20viewBox%3D%220%200%2018%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20clip-path%3D%22url(%23clip0_1_10)%22%3E%3Cpath%20d%3D%22M0.425568%202.37484C-0.142832%201.82995%20-0.14002%200.947517%200.430841%200.405308C1.00205%20-0.137236%201.92619%20-0.134552%202.49459%200.410341L8.99973%206.63534L15.5049%200.410341C16.0733%20-0.134552%2016.9974%20-0.137236%2017.5686%200.405308C18.1395%200.947517%2018.1423%201.82995%2017.5739%202.37484L10.0286%209.59468C9.45775%2010.1372%208.53327%2010.1345%207.96522%209.58964L0.425568%202.37484Z%22%20fill%3D%22%23B2B2B2%22%2F%3E%3C%2Fg%3E%3Cdefs%3E%3CclipPath%20id%3D%22clip0_1_10%22%3E%3Crect%20width%3D%2218%22%20height%3D%2210%22%20fill%3D%22white%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3C%2Fsvg%3E");
-    background-repeat: no-repeat;
-    background-position-x: 95%;
-    background-position-y: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__currentStatus {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .statusHint {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+    }
   }
 }
+
 .optionItem {
-  background-color: red;
+  background-color: white;
+  font-weight: 400;
+  font-size: 16px;
+  color: #b2b2b2;
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+
+  &:hover {
+    background-color: rgba(218, 218, 218, 0.38);
+  }
+
+  &.active {
+    background-color: #B2B2B261;
+  }
+
 }

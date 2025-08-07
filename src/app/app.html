@@ -8,29 +8,44 @@
           type="text"
           placeholder="Поиск"
         />
-        <svg class="searchBlock-input__loop" width="21" height="21" viewBox="0 0 21 21" fill="none"
+        <svg class="searchBlock-input__loop" width="21" height="21" viewBox="0 0 21 21"
              xmlns="http://www.w3.org/2000/svg">
           <path
             d="M13.625 0.0833282C17.6397 0.0833282 20.9167 3.36026 20.9167 7.37499C20.9167 11.3897 17.6397 14.6667 13.625 14.6667C11.8042 14.6667 10.1406 13.9875 8.86019 12.8763L8.41667 13.3198V14.6667L2.59799 20.4853C2.02299 21.0603 1.08965 21.0603 0.514654 20.4853C-0.0603466 19.9103 -0.0603466 18.977 0.514654 18.402L6.33334 12.5833H7.68018L8.1237 12.1398C7.01248 10.8594 6.33334 9.19583 6.33334 7.37499C6.33334 3.36026 9.61027 0.0833282 13.625 0.0833282ZM13.625 2.16666C10.7362 2.16666 8.41667 4.48617 8.41667 7.37499C8.41667 10.2638 10.7362 12.5833 13.625 12.5833C16.5138 12.5833 18.8333 10.2638 18.8333 7.37499C18.8333 4.48617 16.5138 2.16666 13.625 2.16666Z"
             fill="#B2B2B2"/>
         </svg>
       </div>
-      <select
+      <div
         class="searchBlock-select"
-        [formControl]="filter.controls.status"
       >
-        <option [value]="null">Статус</option>
-        <option [value]="true">Активен</option>
-        <option [value]="false">Неактивен</option>
-      </select>
+        <div (click)="showStatus = true" class="searchBlock-select__currentStatus">
+          <div>Статус</div>
+          @if (filter.controls.status.value !== 'all') {
+            <div class="statusHint" [ngStyle]="{
+          'backgroundColor': filter.controls.status.value === 'active'?  '#519d5c' : 'red'
+          }"></div>
+          }
+        </div>
+        @if (showStatus) {
+          <button (click)="filter.controls.status.setValue('all'); showStatus = false" class="optionItem"
+                  [class.active]="filter.controls.status.value === 'all'">Все
+          </button>
+          <button (click)="filter.controls.status.setValue('active'); showStatus = false" class="optionItem"
+                  [class.active]="filter.controls.status.value === 'active'">Активен
+          </button>
+          <button (click)="filter.controls.status.setValue('notActive'); showStatus = false" class="optionItem"
+                  [class.active]="filter.controls.status.value === 'notActive'">Неактивен
+          </button>
+        }
+      </div>
     </form>
     <div class="userList">
-      @for (user of getUserData(); track user.id) {
+      @for (user of userList; track user.id) {
         <app-user-item [data]="user" (click)="selectedUser = user"></app-user-item>
       }
     </div>
   </div>
-  @if(selectedUser) {
+  @if (selectedUser) {
     <div>
       <app-user-item [data]="selectedUser" [isSelected]="true"></app-user-item>
     </div>
