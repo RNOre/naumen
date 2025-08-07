@@ -1,0 +1,23 @@
+<div class="user" [class.selected]="isSelected">
+  <div class="user__name">
+    {{ data.name }}
+  </div>
+  @if (!isSelected) {
+    <div class="user__id">
+      ID {{ data.id }}
+    </div>
+    <div class="user__status">
+      <div class="user__status-outerCircle">
+        <div class="user__status-innerCircle" [ngStyle]="{
+      'background-color': data.active ? '#519d5c' : 'red'
+      }"></div>
+      </div>
+      {{ data.active ? 'Активен' : 'Неактивен' }}
+    </div>
+  } @else {
+    <div class="user__email">
+      &#64; {{ data.email }}
+    </div>
+  }
+
+</div>
