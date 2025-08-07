@@ -17,8 +17,9 @@
       </div>
       <div
         class="searchBlock-select"
+        (click)="showStatus = true"
       >
-        <div (click)="showStatus = true" class="searchBlock-select__currentStatus">
+        <div class="searchBlock-select__currentStatus">
           <div>Статус</div>
           @if (filter.controls.status.value !== 'all') {
             <div class="statusHint" [ngStyle]="{
@@ -27,14 +28,25 @@
           }
         </div>
         @if (showStatus) {
-          <button (click)="filter.controls.status.setValue('all'); showStatus = false" class="optionItem"
-                  [class.active]="filter.controls.status.value === 'all'">Все
+          <button
+            (click)="filter.controls.status.setValue('all');
+            $event.stopPropagation();
+            showStatus = false"
+            class="optionItem"
+            [class.active]="filter.controls.status.value === 'all'">Все
           </button>
-          <button (click)="filter.controls.status.setValue('active'); showStatus = false" class="optionItem"
-                  [class.active]="filter.controls.status.value === 'active'">Активен
+          <button
+            (click)="filter.controls.status.setValue('active');
+            $event.stopPropagation();
+            showStatus = false"
+            class="optionItem"
+            [class.active]="filter.controls.status.value === 'active'">Активен
           </button>
-          <button (click)="filter.controls.status.setValue('notActive'); showStatus = false" class="optionItem"
-                  [class.active]="filter.controls.status.value === 'notActive'">Неактивен
+          <button (click)="filter.controls.status.setValue('notActive');
+           $event.stopPropagation();
+           showStatus = false"
+           class="optionItem"
+           [class.active]="filter.controls.status.value === 'notActive'">Неактивен
           </button>
         }
       </div>

@@ -7,8 +7,6 @@ import {UserInterface} from '../interfaces/user.interface';
 export class UserService {
   private users = signal<UserInterface[]>([]);
 
-  userList = computed(() => this.users())
-
   constructor() {
     this.setUserList();
   }
